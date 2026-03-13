@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import FeeForm from '../form/FeeForm'
 import { detail } from '../feesystem/detail'
-import { useNavigate } from 'react-router-dom'
+
 
 const Data = () => {
-  const navigate=useNavigate();
+  const[show,setShow]=useState(false)
+
   return (
     <div className='h-full w-full bg-gray-200  p-3'>
       <div className='h-[20%]  rounded-md  bg-blue-200'>
@@ -22,7 +24,7 @@ const Data = () => {
             <p> march 6,2026</p>
           </div>
           <div>
-         <button onClick={()=>navigate("/fee")} className='bg-blue-800 rounded-2xl w-30 h-10  text-white'> Pay Total Due</button>
+         <button onClick={()=>setShow(true)} className='bg-blue-800 rounded-2xl w-30 h-10  text-white'> Pay Total Due</button>
           </div>
 
         </div>
@@ -56,6 +58,15 @@ const Data = () => {
   </tbody>
 
  </table>
+ 
+      {
+        show && (
+          <div className='absolute inset-0 bg-black/70 h-screen w-screen'>
+            <FeeForm setShow={setShow} />
+          </div>
+        )
+      }
+
       </div>
     </div>
   )
